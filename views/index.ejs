@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>MongoBoard</title>
+    </head>
+    <body>
+        <h2>The Dojo Mongo Board</h2>
+        <form action = "/post" method="post">
+            <p>Name:</p>
+            <input type="text" name="name">
+            <p>Post:</p>
+            <input type="text" name="post"><br>
+            <input type="submit" value="Post">
+        </form>
+        <% for (var auth of data) { %>
+            <h3>Name: <%= auth.name %></h3>
+            <h3>Message: <%= auth.post %></h3>
+                <form action = "/comment/<%= auth._id %>" method="post">
+                    <% for (var comm of auth.comments) { %>
+                        <p>Name: <%= comm.name %></p>
+                        <p>Comment: <%= comm.comment %></p>
+                    <% } %>
+                    <p>Name:</p>
+                    <input type="text" name="name">
+                    <p>Comment:</p>
+                    <input type="text" name="comment"><br>
+                    <input type="submit" value="comment">
+                </form>
+        <% } %>
+    </body>
+</html>
